@@ -1,8 +1,14 @@
 <template>
   <v-app :theme="theme">
     <v-navigation-drawer permanent>
-      <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-view-dashboard" title="Board" value="board"></v-list-item>
+      <v-list density="compact" nav @click:select="onNavItemClick">
+        <v-list-item
+          v-for="navItem in navList"
+          :key="navItem.title"
+          :prepend-icon="navItem.icon"
+          :title="navItem.title"
+          :value="navItem.title">
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar>
@@ -29,8 +35,16 @@
 import { ref } from 'vue'
 
 const theme = ref('light')
+const navList = ref([
+  { icon: 'mdi-view-dashboard', title: 'Board' },
+  { icon: 'mdi-view-dashboard', title: 'Analysis' }
+])
 
 function onClickThemeStyle () {
   theme.value = theme.value === 'light' ? 'dark' : 'light'
+}
+
+function onNavItemClick (id: string, value: string, path: string[]) {
+  console.log('item click ', id, value, path)
 }
 </script>
