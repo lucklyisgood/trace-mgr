@@ -74,8 +74,8 @@ import { useUserStore } from '@/store/Users'
 import { useRouter, useRoute } from 'vue-router'
 
 const loginData = ref({
-  name: 'admin',
-  pwd: 'trace123.'
+  name: '',
+  pwd: ''
 })
 
 const tips = reactive({
