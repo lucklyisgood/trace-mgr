@@ -4,3 +4,6 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module 'mockjs'
+declare module 'vue3-json-viewer'
