@@ -53,8 +53,8 @@ jobs:
         with:
           host: ${{ secrets.TRACE_SVR_HOST }}
           user: ${{ secrets.TRACE_SVR_USERNAME }}
-          host: ${{ secrets.TRACE_SVR_PWD }}
-          host: ${{ secrets.TRACE_SVR_PORT }}
+          pass: ${{ secrets.TRACE_SVR_PWD }}
+          port: ${{ secrets.TRACE_SVR_PORT }}
           connect_timeout: 10s
           scp: |
             './docker-compose.yaml' => ~/data0/upload/trace-mgr/
