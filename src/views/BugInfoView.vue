@@ -1,6 +1,7 @@
 <template>
   <v-dialog
     v-model="dialogData.isShow"
+    @update:model-value="onCloseDialog"
   >
     <v-card
       height="h=75"

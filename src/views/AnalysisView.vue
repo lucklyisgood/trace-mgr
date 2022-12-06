@@ -112,6 +112,13 @@
       :app-b-ver="selectData.bVer"
       @msg:close="(dialogData.isShow = false)"
     />
+    <BugFixView
+      :bug-md5="fixBugDialogData.bugMd5"
+      :app-ver="selectData.ver"
+      :app-b-ver="selectData.bVer"
+      v-model="fixBugDialogData.isShow"
+      @update:model-value="(fixBugDialogData.isShow = false)"
+    />
   </v-container>
 </template>
 <script setup lang="ts">
@@ -119,6 +126,7 @@ import { getCurrentInstance, reactive } from 'vue'
 import { AxiosResponse, AxiosError } from 'axios'
 import { NetResp } from '@/typedefs'
 import BugInfoView from './BugInfoView.vue'
+import BugFixView from './BugFixView.vue'
 
 interface BugListResp {
   code: number,
@@ -161,6 +169,11 @@ const pageData = reactive({
 })
 
 const dialogData = reactive({
+  isShow: false,
+  bugMd5: ''
+})
+
+const fixBugDialogData = reactive({
   isShow: false,
   bugMd5: ''
 })
@@ -237,6 +250,8 @@ function onTableItemClick (bugMd5: string): void {
 
 function onBtnFix (bugMd5: string) {
   console.log('fix bug ...', bugMd5)
+  fixBugDialogData.bugMd5 = bugMd5
+  // fixBugDialogData.isShow = true
 }
 </script>
 <style lang="scss" scoped>
