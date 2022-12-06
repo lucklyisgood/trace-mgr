@@ -60,6 +60,5 @@ jobs:
             './docker-compose.yaml' => ~/data0/upload/trace-mgr/
           last_ssh: |
             cd ~/data0/upload/trace-mgr/
-            docker-compose pull
-            docker-compose up -d --build
+            ./startup.sh
 
