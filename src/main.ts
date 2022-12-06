@@ -51,7 +51,7 @@ if (process.env.NODE_ENV === 'production') {
   axios.defaults.baseURL = 'prod/'
 } else {
   axios.defaults.withCredentials = false
-  axios.defaults.baseURL = 'api/'
+  axios.defaults.baseURL = 'test/'
 }
 
 AxiosMiddleSetup()

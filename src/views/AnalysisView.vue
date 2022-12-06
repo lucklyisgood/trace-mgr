@@ -1,99 +1,110 @@
 <template>
-  <v-container
-    fluid
-    class="fill-height"
-  >
-    <v-container
-      fluid
-    >
-      <v-row>
-        <v-col>
-          <v-select
-            label="app_version"
-            variant="solo"
-            :items="chooseItems.versionItems"
-            @update:model-value="onVersionSelect"
-            :model-value="selectData.ver"
-          />
-        </v-col>
-        <v-col>
-          <v-select
-            label="app_business_version"
-            variant="solo"
-            :items="chooseItems.bVersionItems"
-            @update:model-value="onBVersionSelect"
-            :model-value="selectData.bVer"
-          />
-        </v-col>
-        <v-col>
-          <v-select
-            label="bug_stat"
-            variant="solo"
-            :items="chooseItems.bugStatItems"
-            @update:model-value="onFindBugTypeSelect"
-          />
-        </v-col>
-        <v-col
-          cols="1"
-        >
-          <v-btn @click="onBtnFind">
-            查询
-          </v-btn>
-        </v-col>
-        <v-spacer />
-      </v-row>
-    </v-container>
-    <v-container
-      fluid
-      class="fill-height"
-    >
-      <v-table
-        height="h-100"
-        fixed-header
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-select
+          label="app_version"
+          variant="solo"
+          :items="chooseItems.versionItems"
+          @update:model-value="onVersionSelect"
+          :model-value="selectData.ver"
+        />
+      </v-col>
+      <v-col>
+        <v-select
+          label="app_business_version"
+          variant="solo"
+          :items="chooseItems.bVersionItems"
+          @update:model-value="onBVersionSelect"
+          :model-value="selectData.bVer"
+        />
+      </v-col>
+      <v-col>
+        <v-select
+          label="bug_stat"
+          variant="solo"
+          :items="chooseItems.bugStatItems"
+          @update:model-value="onFindBugTypeSelect"
+        />
+      </v-col>
+      <v-col
+        cols="1"
       >
-        <thead>
-          <tr>
-            <th class="text-left">
-              bug type
-            </th>
-            <th class="text-left">
-              bug type md5
-            </th>
-            <th class="text-left">
-              bug count
-            </th>
-            <th class="text-left">
-              operate
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="item in bugListData.list"
-            :key="item.bug_err_md5"
-            @click="() => {onTableItemClick(item.bug_err_md5)}"
-          >
-            <td>
-              {{ item.bug_err_txt }}
-            </td>
-            <td>
-              {{ item.bug_err_md5 }}
-            </td>
-            <td>
-              {{ item.bug_count }}
-            </td>
-            <td>
-              <v-btn>修复</v-btn>
-            </td>
-          </tr>
-        </tbody>
-      </v-table>
-      <v-pagination
-        :model-value="pageData.pageAt"
-        :length="pageData.length"
-        @update:model-value="onClickChangePageItem"
-      />
-    </v-container>
+        <v-btn @click="onBtnFind">
+          查询
+        </v-btn>
+      </v-col>
+      <v-spacer />
+    </v-row>
+    <v-row
+      no-gutters
+    >
+      <v-col
+        cols="12"
+      >
+        <v-table
+          fixed-header
+        >
+          <thead>
+            <tr>
+              <th class="text-left">
+                bug type
+              </th>
+              <th class="text-left">
+                bug type md5
+              </th>
+              <th class="text-left">
+                bug count
+              </th>
+              <th class="text-left">
+                operate
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="item in bugListData.list"
+              :key="item.bug_err_md5"
+            >
+              <td
+                class="ZAutoWrap"
+                @click="() => {onTableItemClick(item.bug_err_md5)}"
+              >
+                {{ item.bug_err_txt }}
+              </td>
+              <td
+                @click="() => {onTableItemClick(item.bug_err_md5)}"
+              >
+                {{ item.bug_err_md5 }}
+              </td>
+              <td>
+                {{ item.bug_count }}
+              </td>
+              <td>
+                <v-btn
+                  @click="() => {onBtnFix(item.bug_err_md5)}"
+                >
+                  修复
+                </v-btn>
+              </td>
+            </tr>
+          </tbody>
+        </v-table>
+      </v-col>
+    </v-row>
+    <v-row
+      no-gutters
+    >
+      <v-col
+        cols="12"
+      >
+        <v-pagination
+          :model-value="pageData.pageAt"
+          :length="pageData.length"
+          @update:model-value="onClickChangePageItem"
+        />
+      </v-col>
+    </v-row>
     <BugInfoView
       v-if="dialogData.isShow"
       :bug-md5="dialogData.bugMd5"
@@ -224,4 +235,13 @@ function onTableItemClick (bugMd5: string): void {
   dialogData.bugMd5 = bugMd5
 }
 
+function onBtnFix (bugMd5: string) {
+  console.log('fix bug ...', bugMd5)
+}
 </script>
+<style lang="scss" scoped>
+.ZAutoWrap {
+  word-break: break-all;
+  word-wrap:break-word;
+}
+</style>

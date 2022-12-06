@@ -1,0 +1,7 @@
+services:
+  trace-mgr:
+    container_name: trace-mgr
+    image: vkerl/trace-mgr:main
+    ports:
+      - 14002:80
+    restart: always
