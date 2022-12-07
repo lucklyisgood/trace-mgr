@@ -43,9 +43,13 @@ const option = ref({
 
 onBeforeMount(() => {
   const t = new Date()
-  const endDay = `${t.getFullYear()}-${t.getMonth() + 1}-${t.getDate()}`
+  const year = t.getFullYear() < 10 ? '0' + t.getFullYear() : t.getFullYear()
+  const month = t.getMonth() + 1 < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)
+  let day = t.getDate() < 10 ? '0' + t.getDate() : t.getDate()
+  const endDay = `${year}-${month}-${day}`
   t.setDate(t.getDate() - 6)
-  const startDay = `${t.getFullYear()}-${t.getMonth() + 1}-${t.getDate()}`
+  day = t.getDate() < 10 ? '0' + t.getDate() : t.getDate()
+  const startDay = `${year}-${month}-${day}`
   proxy &&
     proxy.$http
       .get(`svr/bugstat/report_count_daily/${startDay}/${endDay}`)
