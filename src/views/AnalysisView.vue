@@ -217,7 +217,7 @@ function onVersionSelect (ver: string): void {
   selectData.ver = ver
   selectData.bVer = ''
   chooseItems.bVersionItems = []
-  const items: string[] = ['0']
+  const items: string[] = []
   versionListData.filter(v => {
     if (v.app_version === ver) {
       items.push(v.app_business_version)
@@ -251,7 +251,7 @@ function onTableItemClick (bugMd5: string): void {
 function onBtnFix (bugMd5: string) {
   console.log('fix bug ...', bugMd5)
   fixBugDialogData.bugMd5 = bugMd5
-  // fixBugDialogData.isShow = true
+  fixBugDialogData.isShow = true
 }
 </script>
 <style lang="scss" scoped>
