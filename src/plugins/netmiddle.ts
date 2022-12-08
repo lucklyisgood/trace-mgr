@@ -3,7 +3,6 @@ import router from '@/router/index'
 
 export default function AxiosMiddleSetup () {
   axios.interceptors.request.use((config: AxiosRequestConfig) => {
-    console.log('xxxxx', config)
     if (config.method === 'get') {
       if (!config.params) {
         config.params = {}
