@@ -17,13 +17,6 @@ module.exports = defineConfig({
           '^/api': ''
         }
       },
-      '/test': {
-        target: 'http://111.67.194.48/trace',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/test': ''
-        }
-      },
       '/prod': {
         target: 'https://tracer.bbclient.icu/v2',
         changeOrigin: true,
