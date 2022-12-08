@@ -47,7 +47,7 @@ const store = createPinia()
 const app = createApp(App)
 
 if (process.env.NODE_ENV === 'production') {
-  axios.defaults.withCredentials = false
+  axios.defaults.withCredentials = true
   axios.defaults.baseURL = 'https://tracer.bbclient.icu/v2/'
 } else {
   axios.defaults.withCredentials = false
