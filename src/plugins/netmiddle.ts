@@ -3,10 +3,12 @@ import router from '@/router/index'
 
 export default function AxiosMiddleSetup () {
   axios.interceptors.request.use((config: AxiosRequestConfig) => {
+    if (!config.params) {
+      config.params = {}
+    }
+    config.params.trace_token = localStorage.getItem('trace_token')
+    // trace_token
     if (config.method === 'get') {
-      if (!config.params) {
-        config.params = {}
-      }
       config.params.__t__ = Date.now() / 1000
     } else if (config.method === 'post') {
       // if (!config.headers) {
