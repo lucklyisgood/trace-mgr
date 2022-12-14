@@ -217,6 +217,7 @@ function onVersionSelect (ver: string): void {
   selectData.ver = ver
   selectData.bVer = ''
   chooseItems.bVersionItems = []
+  pageData.pageAt = 1
   const items: string[] = []
   versionListData.filter(v => {
     if (v.app_version === ver) {
@@ -231,6 +232,7 @@ function onVersionSelect (ver: string): void {
 
 function onBVersionSelect (bVer: string): void {
   selectData.bVer = bVer
+  pageData.pageAt = 1
 }
 
 function onFindBugTypeSelect (type: string): void {
