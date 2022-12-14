@@ -5,5 +5,3 @@ services:
     ports:
       - 14002:80
     restart: always
-    volumes:
-      - ./logs:/var/log/nginx
