@@ -13,6 +13,8 @@
         >
           <v-row>
             <v-col cols="6">
+              <h4>err: {{ dialogData.bugType }}</h4>
+              <v-divider />
               <p>cuid: {{ dialogData.cuid }}</p>
               <v-divider />
               <p>uid: {{ dialogData.uid }}</p>
@@ -55,6 +57,7 @@ const props = withDefaults(defineProps<{
 })
 const dialogData = reactive({
   isShow: true,
+  bugType: '',
   bugCtx: {},
   cuid: '',
   uid: ''
@@ -73,7 +76,9 @@ interface BugInfoResp {
   // eslint-disable-next-line camelcase
   app_cuid: string,
   // eslint-disable-next-line camelcase
-  bug_ctx: string
+  bug_ctx: string,
+  // eslint-disable-next-line camelcase
+  bug_err_txt: string
 }
 const bugInfoData = reactive({
   list: [] as BugInfoResp[],
@@ -103,6 +108,7 @@ function pullSvrDat () {
           dialogData.bugCtx = JSON.parse(item.bug_ctx)
           dialogData.uid = item.app_uid
           dialogData.cuid = item.app_cuid
+          dialogData.bugType = item.bug_err_txt
         }
       }
     })
